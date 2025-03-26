@@ -1,11 +1,12 @@
 /*
-==================================================================
+=====================================================================
 DDL Script: Create Bronze Tables
-==================================================================
+=====================================================================
 Script Purpose: 
   This script creates six(6) tables in the datawarehouse database,
   dropping existing tables if they already exist.
   Run this script to re-define the DDL structure of 'bronze' Tables
+=====================================================================
 */
 
 DROP TABLE IF EXISTS bronze_crm_cust_info;
