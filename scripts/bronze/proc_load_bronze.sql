@@ -18,159 +18,137 @@ Parameters:
 ===============================================================================
 */
 
-SET @GLOBAL_START_TIME = NOW();
-
-USE Datawarehouse;
-DROP TABLE log_messages;
-
-	CREATE TABLE log_messages ( message TEXT);
-
-	INSERT INTO log_messages (message) VALUES ('==============================');
-	INSERT INTO log_messages (message) VALUES ('Loading bronze layer...');
-    INSERT INTO log_messages (message) VALUES ('==============================');
-    
-    INSERT INTO log_messages (message) VALUES ('------------------------------');
-	INSERT INTO log_messages (message) VALUES ('Loading CRM tables...');
-    INSERT INTO log_messages (message) VALUES ('------------------------------');
-    
-		SET @START_TIME = NOW();
-			INSERT INTO log_messages (message) VALUES ('>> Truncating Table: bronze_crm_cust_info');
-			TRUNCATE TABLE bronze_crm_cust_info;
-			INSERT INTO log_messages (message) VALUES ('>> Inserting Data Into: bronze_crm_cust_info');
-	LOAD DATA INFILE "C:/source_crm/cust_info.csv"
-	IGNORE INTO TABLE bronze_crm_cust_info
-	FIELDS TERMINATED BY ','
-	LINES TERMINATED BY '\n'
-	IGNORE 1 ROWS;
-		SET @END_TIME = NOW();
-                 
-			INSERT INTO log_messages (message) 
-			SELECT CONCAT('   Rows affected: ', COUNT(*)) FROM bronze_crm_cust_info;
-			INSERT INTO log_messages (message) 
-			VALUES (CONCAT('   Load duration: ', TIMESTAMPDIFF(SECOND, @start_time, @end_time), ' seconds'));
-			INSERT INTO log_messages (message) VALUES ('------------------------------');
-                
-		SET @START_TIME = NOW();
-			INSERT INTO log_messages (message) VALUES ('>> Truncating Table: bronze_crm_prd_info');
-			TRUNCATE TABLE bronze_crm_prd_info;
-			INSERT INTO log_messages (message) VALUES ('>> Inserting Data Into: bronze_crm_prd_info');
-	LOAD DATA INFILE "C:/source_crm/prd_info.csv"
-	IGNORE INTO TABLE bronze_crm_prd_info
-	FIELDS TERMINATED BY ','
-	LINES TERMINATED BY '\n'
-	IGNORE 1 ROWS;
-		SET @END_TIME = NOW();
-                
-			INSERT INTO log_messages (message)
-			SELECT CONCAT('   Rows affected: ', COUNT(*)) FROM bronze_crm_prd_info;
-			INSERT INTO log_messages (message)
-			VALUES (CONCAT('   Load duration: ', TIMESTAMPDIFF(SECOND, @START_TIME, @END_TIME), ' seconds'));
-			INSERT INTO log_messages (message) VALUES ('------------------------------');
-				
-		SET @START_TIME = NOW();
-			INSERT INTO log_messages (message) VALUES ('>> Truncating Table: bronze_crm_sales_details');
-			TRUNCATE TABLE bronze_crm_sales_details;
-			INSERT INTO log_messages (message) VALUES ('>> Inserting Data Into: bronze_crm_sales_details');
-	LOAD DATA INFILE 'C:/source_crm/sales_details.csv'
-	IGNORE INTO TABLE bronze_crm_sales_details
-	FIELDS TERMINATED BY ','
-	LINES TERMINATED BY '\n'
-	IGNORE 1 ROWS;
-		SET @END_TIME = NOW();
-                
-			INSERT INTO log_messages (message)
-			SELECT CONCAT('   Rows affected: ', COUNT(*)) FROM bronze_crm_sales_details;
-			INSERT INTO log_messages (message)
-			VALUES (CONCAT('   Load duration: ', TIMESTAMPDIFF(SECOND, @START_TIME, @END_TIME), ' seconds'));
-            
-	INSERT INTO log_messages (message) VALUES ('------------------------------');
-	INSERT INTO log_messages (message) VALUES ('Loading ERP tables...');
-    INSERT INTO log_messages (message) VALUES ('------------------------------');
-    
-		SET @START_TIME = NOW();
-			INSERT INTO log_messages (message) VALUES ('>> Truncating Table: bronze_erp_cust_az12');
-			TRUNCATE TABLE bronze_erp_cust_az12;
-			INSERT INTO log_messages (message) VALUES ('>> Inserting Data Into: bronze_erp_cust_az12');
-	LOAD DATA INFILE 'C:/source_erp/CUST_AZ12.csv'
-	IGNORE INTO TABLE bronze_erp_cust_az12
-	FIELDS TERMINATED BY ','
-	LINES TERMINATED BY '\n'
-	IGNORE 1 ROWS;
-		SET @END_TIME = NOW();
-                
-			INSERT INTO log_messages (message)
-			SELECT CONCAT('   Rows affected: ', COUNT(*)) FROM bronze_erp_cust_az12;
-			INSERT INTO log_messages (message)
-			VALUES (CONCAT('   Load duration: ', TIMESTAMPDIFF(SECOND,@START_TIME, @END_TIME), ' seconds'));
-			INSERT INTO log_messages (message) VALUES ('------------------------------');
-	 
-		SET @START_TIME = NOW();
-			INSERT INTO log_messages (message) VALUES ('>> Truncating Table: bronze_erp_loc_a101');
-			TRUNCATE TABLE bronze_erp_loc_a101;
-			INSERT INTO log_messages (message) VALUES ('>> Inserting Data Into: bronze_erp_loc_a101');
-	LOAD DATA INFILE 'C:/source_erp/LOC_A101.csv'
-	IGNORE INTO TABLE bronze_erp_loc_a101
-	FIELDS TERMINATED BY ','
-	LINES TERMINATED BY '\n'
-	IGNORE 1 ROWS;
-		SET @END_TIME = NOW();
-                
-			INSERT INTO log_messages (message)
-			SELECT CONCAT('   Rows affected: ', COUNT(*)) FROM bronze_erp_loc_a101;
-			INSERT INTO log_messages (message)
-			VALUES (CONCAT('   Load duration: ', TIMESTAMPDIFF(SECOND, @START_TIME, @END_TIME), ' seconds'));
-			INSERT INTO log_messages (message) VALUES ('------------------------------');
- 
-		SET @START_TIME = NOW();
-			INSERT INTO log_messages (message) VALUES ('>> Truncating Table: bronze_erp_px_cat_g1v2');
-			TRUNCATE TABLE bronze_erp_px_cat_g1v2;
-			INSERT INTO log_messages (message) VALUES ('>> Inserting Data Into: bronze_erp_px_cat_g1v2');
- LOAD DATA INFILE 'C:/source_erp/PX_CAT_G1V2.csv'
- IGNORE INTO TABLE bronze_erp_px_cat_g1v2
- FIELDS TERMINATED BY ','
- LINES TERMINATED BY '\n'
- IGNORE 1 ROWS;
-		SET @END_TIME = NOW();
-                
-			INSERT INTO log_messages (message)
-			SELECT CONCAT('   Rows affected: ', COUNT(*)) FROM bronze_erp_px_cat_g1v2;
-			INSERT INTO log_messages (message)
-			VALUES (CONCAT('   Load duration: ', TIMESTAMPDIFF(SECOND, @START_TIME, @END_TIME), ' seconds'));
-			INSERT INTO log_messages (message) VALUES ('------------------------------');
-            
-SET @GLOBAL_END_TIME = NOW();
-INSERT INTO log_messages(message)
-VALUES (CONCAT('Bronze layer load duration: ', TIMESTAMPDIFF(SECOND, @GLOBAL_START_TIME, @GLOBAL_END_TIME), ' seconds'));
-INSERT INTO log_messages (message) VALUES ('>> Bronze Layer Load Process Completed.');
-
-
-DROP PROCEDURE load_bronze;
-
-DELIMITER //
-CREATE PROCEDURE load_bronze()
+CREATE OR ALTER PROCEDURE bronze.load_bronze AS
 BEGIN
+	DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME
+	SET @batch_start_time = GETDATE()
+	BEGIN TRY
+		PRINT('=============================================');
+		PRINT'Loading Bronze Layer';
+		PRINT('=============================================');
 
-	SELECT * 
-	FROM bronze_crm_cust_info;
 
-	SELECT * 
-	FROM bronze_crm_prd_info;
+		PRINT('---------------------------------------------');
+		PRINT'Loading CRM Tables'
+		PRINT('---------------------------------------------');
 
-	SELECT * 
-	FROM bronze_crm_sales_details;
+		SET @start_time = GETDATE()
+		PRINT '>>> Truncating Table: bronze.crm_cust_info';
+		TRUNCATE TABLE bronze.crm_cust_info;
 
-	SELECT * 
-	FROM bronze_erp_cust_az12;
+		PRINT '>>> Inserting Data Into: bronze.crm_cust_info';
+		BULK INSERT bronze.crm_cust_info
+		FROM 'C:\source_crm\cust_info.csv'
+		WITH 
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+		SET @end_time = GETDATE()
+		PRINT 'Load Duration: ' + CAST(DATEDIFF(SECOND,@start_time, @end_time)AS NVARCHAR)  + 'seconds'
+		PRINT('---------------------------------------------');
 
-	SELECT * 
-	FROM bronze_erp_loc_a101;
+		SET @start_time = GETDATE()
+		PRINT '>>> Truncating Table: bronze.crm_prd_info';
+		TRUNCATE TABLE bronze.crm_prd_info;
 
-	SELECT * 
-	FROM bronze_erp_px_cat_g1v2;
-    
-	SELECT *
-    FROM log_messages;
-END//
-DELIMITER ;
- CALL load_bronze()
+		PRINT '>>> Inserting Data Into: bronze.crm_prd_info';
+		BULK INSERT bronze.crm_prd_info
+		FROM 'C:\source_crm\prd_info.csv'
+		WITH
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+		SET @end_time = GETDATE()
+		PRINT 'Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + 'seconds'
+		PRINT('---------------------------------------------');
 
+		SET @start_time = GETDATE()
+		PRINT '>>> Truncating Table: bronze.crm_sales_details';
+		TRUNCATE TABLE bronze.crm_sales_details;
+		PRINT '>>> Inserting Data Into: bronze.crm_sales_details';
+		BULK INSERT bronze.crm_sales_details
+		FROM 'C:\source_crm\sales_details.csv'
+		WITH
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+		SET @end_time = GETDATE()
+		PRINT 'Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + 'seconds'
+		
+		PRINT('---------------------------------------------');
+		PRINT'Loading ERP Tables'
+		PRINT('---------------------------------------------');
+
+		SET @start_time = GETDATE()
+		PRINT '>>> Truncating Table: bronze.erp_cust_az12';
+		TRUNCATE TABLE bronze.erp_cust_az12;
+		PRINT '>>> Inserting Data Into: bronze.erp_cust_az12';
+		BULK INSERT bronze.erp_cust_az12
+		FROM 'C:\source_erp\CUST_AZ12.csv'
+		WITH 
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+		SET @end_time = GETDATE()
+		PRINT 'Load Duration: ' + CAST(DATEDIFF(SECOND,@start_time, @end_time) AS NVARCHAR) + 'seconds'
+		PRINT('---------------------------------------------');
+
+		SET @start_time = GETDATE()
+		PRINT '>>> Truncating Table: bronze.erp_loc_a101';
+		TRUNCATE TABLE bronze.erp_loc_a101
+		PRINT '>>> Inserting Data Into: bronze.erp_loc_a101';
+		BULK INSERT bronze.erp_loc_a101
+		FROM 'C:\source_erp\LOC_A101.csv'
+		WITH
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+		SET @end_time = GETDATE()
+		PRINT 'Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + 'seconds'
+		PRINT('---------------------------------------------');
+
+		SET @start_time = GETDATE()
+		PRINT '>>> Truncating Table: bronze.erp_px_cat_g1v2';
+		TRUNCATE TABLE bronze.erp_px_cat_g1v2
+		PRINT '>>> Inserting Data Into: bronze.erp_px_cat_g1v2';
+		BULK INSERT bronze.erp_px_cat_g1v2
+		FROM 'C:\source_erp\PX_CAT_G1V2.csv'
+		WITH
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+		SET @end_time = GETDATE()
+		PRINT 'Load Duration: ' + CAST(DATEDIFF(SECOND,@start_time, @end_time) AS NVARCHAR) + 'seconds'
+		PRINT('---------------------------------------------');
+
+	SET @batch_end_time = GETDATE()
+	PRINT ' '
+	PRINT('=============================================');
+	PRINT 'Loading bronze layer is completed'
+	PRINT 'Total load duration: ' + CAST(DATEDIFF(SECOND, @batch_start_time, @batch_end_time) AS NVARCHAR) + 'seconds'
+	PRINT('=============================================');
+	END TRY
+	BEGIN CATCH
+		PRINT('=============================================');
+		PRINT 'ERROR OCCURED DURING LOADING BRONZE LAYER'
+		PRINT 'ERROR MESSAGE: ' + ERROR_MESSAGE()
+		PRINT 'ERROR NUMBER: ' + CAST (ERROR_NUMBER() AS NVARCHAR)
+		PRINT 'ERROR STATE: ' + CAST (ERROR_STATE() AS NVARCHAR)
+		PRINT('=============================================');
+	END CATCH
+	
+END 
+
+EXECUTE bronze.load_bronze;
