@@ -44,12 +44,14 @@ Develop a modern data warehouse using MySQL to consolidate sales data, enabling 
 ### BI: Analytics & Reporting (Data Analytics)
 
 #### Objective
-Develop SQL-based analytics to deliver detailed insights into:
+Develop SQL-based analytics and Tableau dashboards to deliver detailed insights into:
 - *Customer Behavior*
 - *Product Performance*
 - *Sales Trends*
 
-These insights empower stakeholders with key business metrics, enabling strategic decision making.
+SQL is used to generate clean, reliable analytical datasets from the data warehouse, while *Tableau* is used to build interactive dashboards and KPI reports that provide high-level business visibility.
+
+These insights empower stakeholders with key business metrics, enabling *data-driven strategic decision-making*.
 
 ---
 
