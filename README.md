@@ -1,161 +1,127 @@
-Data Warehouse & Advanced Analytics Project
+# Data Warehouse and Analytics Project
 
-Welcome to the Data Warehouse & Advanced Analytics Project repository.
+Welcome to the Data Warehouse and Analytics Project repository!
+This portfolio project showcases a robust data warehousing and analytics solution, demonstrating industry best practices in data engineering and analytics. The project encompasses the entire data warehousing lifecycle, from designing and building a data warehouse to generating actionable business insights.
 
-This portfolio project demonstrates an end-to-end data engineering and analytics workflow, covering the full lifecycle from data ingestion and modeling to business intelligence and advanced customer analytics. The project showcases industry best practices in data warehousing, analytics, and data-driven decision-making.
+---
 
-📖 Project Overview
+## 📖 Project Overview
 
-This project is structured across three analytical layers:
+This project involves:
 
-Data Engineering (SQL Data Warehouse)
+1. *Data Architecture*: Designing a modern data warehouse using Medallion Architecture (*Bronze*, *Silver*, and *Gold* layers).
+2. *ETL Pipelines*: Extracting, transforming, and loading data from source systems into the warehouse.
+3. *Data Modeling*: Developing fact and dimension tables optimized for analytical queries.
+4. *Analytics & Reporting*: Creating SQL-based reports and Tableau dashboards for actionable insights.
+5. *Advanced Analytics*: Performing customer analytics using Python, including *RFM segmentation*, *Customer Lifetime Value (CLV)*, *churn & retention analysis*, and *revenue prioritization* with insights, recommendations, and visuals.
 
-Design and implementation of a modern data warehouse using Medallion Architecture (Bronze, Silver, Gold).
+---
 
-Robust ETL pipelines to ingest, clean, and transform data.
+## Tools Used
+- SQL Server / MySQL
+- Tableau
+- Python
+- Draw.io
 
-Star-schema modeling optimized for analytical queries.
+---
 
-Business Intelligence & Reporting (SQL + Tableau)
+## Project Requirements
 
-SQL-based analytics for KPI reporting.
+### Building the Data Warehouse (Data Engineering)
 
-Tableau dashboards providing high-level visibility into business performance.
+#### Objective
+Develop a modern data warehouse using MySQL to consolidate sales data, enabling analytical reporting and informed decision making.
 
-Advanced Analytics (Python)
+#### Specifications
+- *Data Sources*: Import data from two source systems (ERP and CRM) provided as CSV files.
+- *Data Quality*: Cleanse and resolve data quality issues prior to analysis.
+- *Integration*: Combine both sources into a single, user-friendly data model designed for analytical queries.
+- *Scope*: Focus on the latest dataset only; historization of data is not required.
+- *Documentation*: Provide clear documentation of the data model to support both business stakeholders and analytics teams.
 
-Deep exploratory data analysis beyond dashboards.
+---
 
-Customer analytics including RFM segmentation, Customer Lifetime Value (CLV), Churn & Retention analysis, and Revenue & Customer Value Prioritization.
+### BI: Analytics & Reporting (Data Analytics)
 
-Actionable insights, recommendations, and visual storytelling.
+#### Objective
+Develop SQL-based analytics to deliver detailed insights into:
+- *Customer Behavior*
+- *Product Performance*
+- *Sales Trends*
 
-🧰 Tools & Technologies
+These insights empower stakeholders with key business metrics, enabling strategic decision making.
 
-SQL Server / MySQL – Data warehousing and transformations
+---
 
-Python – Advanced analytics (pandas, matplotlib)
+### Advanced Analytics (Python)
 
-Tableau – BI dashboards and KPI reporting
+#### Objective
+Extend dashboard-level insights with advanced exploratory data analysis using Python to uncover deeper customer behavior patterns and business opportunities.
 
-Draw.io – Architecture, data flow, and modeling diagrams
+#### Key Analyses
+- *RFM Segmentation* (Recency, Frequency, Monetary)
+- *Customer Lifetime Value (CLV)*
+- *Churn & Retention Analysis*
+- *Revenue & Customer Value Prioritization*
+- *Customer Value & Engagement Action Matrix*
+- *Business insights, recommendations, and visual storytelling*
 
-🎯 Project Objectives
-Data Engineering
+---
 
-Design and build a modern data warehouse to consolidate ERP and CRM sales data.
+## 🏗️ Data Architecture
 
-Ensure high data quality through cleansing and standardization.
+The data architecture for this project follows Medallion Architecture (*Bronze*, *Silver*, and *Gold* layers):
 
-Deliver a business-ready Gold layer optimized for analytics.
+![Data Architecture](docs/data_architecture.png)
 
-Business Intelligence
+1. *Bronze Layer*: Stores raw data as-is from the source systems. Data is ingested from CSV files into the SQL Server database.
+2. *Silver Layer*: Includes data cleansing, standardization, and normalization processes to prepare data for analysis.
+3. *Gold Layer*: Houses business-ready data modeled into a star schema required for reporting and analytics.
 
-Develop SQL-based analytics for:
+---
 
-Customer behavior
+## 📂 Repository Structure
 
-Product performance
-
-Sales trends
-
-Provide dashboards to support data-driven decision-making.
-
-Advanced Analytics (Python)
-
-Extend BI insights with deeper customer-level analysis.
-
-Identify high-value customers and churn risks.
-
-Quantify revenue impact and prioritize retention strategies.
-
-Translate analytics into clear business actions.
-
-🏗️ Data Architecture
-
-The project follows Medallion Architecture:
-
-Bronze Layer
-
-Raw data ingestion from ERP and CRM CSV sources into SQL Server.
-
-Silver Layer
-
-Data cleansing, normalization, and standardization.
-
-Gold Layer
-
-Business-ready star schema designed for reporting and analytics.
-
-📊 Advanced Customer Analytics (Python)
-
-The Python analytics layer builds on the curated Gold data to uncover deeper insights:
-
-RFM Segmentation – Customer behavior classification using Recency, Frequency, and Monetary metrics
-
-Customer Lifetime Value (CLV) – Estimation of long-term customer value
-
-Churn & Retention Analysis – Behavioral churn signals inferred from engagement patterns
-
-Revenue & Customer Value Prioritization – Identification of high-impact segments
-
-Customer Value & Engagement Action Matrix – Actionable retention and growth strategies
-
-All Python notebooks, visuals, and insights are available in the /analytics directory.
-
-📂 Repository Structure
-SQL-Data-warehouse-Project/
+data-warehouse-project/
 │
-├── datasets/                           # Source datasets (ERP and CRM data)
+├── datasets/ # Raw datasets used for the project (ERP and CRM data)
 │
-├── docs/                               # Architecture, diagrams, and documentation
-│   ├── etl.drawio
-│   ├── data_architecture.drawio
-│   ├── data_catalog.md
-│   ├── data_flow.drawio
-│   ├── data_models.drawio
+├── docs/ # Project documentation and architecture details
+│ ├── etl.drawio # ETL techniques and workflows
+│ ├── data_architecture.drawio # Overall system architecture
+│ ├── data_catalog.md # Dataset catalog and metadata
+│ ├── data_flow.drawio # Data flow diagrams
+│ ├── data_models.drawio # Star schema data models
 │
-├── scripts/                            # SQL scripts for ETL and transformations
-│   ├── bronze/
-│   ├── silver/
-│   ├── gold/
+├── scripts/ # SQL scripts for ETL and transformations
+│ ├── bronze/ # Extracting and loading raw data
+│ ├── silver/ # Cleaning and transforming data
+│ ├── gold/ # Creating analytical models
 │
-├── analytics/                          # Python-based advanced analytics
-│   ├── notebooks/
-│   ├── images/
-│   └── README.md
+├── analytics/ # Python-based advanced analytics
+│ ├── notebooks/ # Jupyter notebooks (RFM, CLV, churn analysis)
+│ ├── images/ # Generated visualizations
+│ └── README.md # Analytics documentation
 │
-├── tests/                              # Data quality and validation scripts
+├── tests/ # Test scripts and data quality checks
 │
-├── README.md                           # Project overview
-├── LICENSE                             # License information
-├── .gitignore
-└── requirements.txt
-
-📌 Key Takeaway
-
-This project demonstrates how SQL-based data engineering, Tableau BI dashboards, and Python-driven advanced analytics can be combined to deliver end-to-end insights — from raw data to strategic business recommendations.
-
-📜 License
-
-This project is licensed under the MIT License.
-You are free to use, modify, and share this project with proper attribution.
-
-👤 About Me
-
-Hello! I’m Wisdom Chinemere Mpamugo (also known as Wisdom Analytics), a data analyst passionate about building scalable data solutions and transforming data into actionable insights.
-
-📫 Let’s connect:
-
-LinkedIn: (add your public LinkedIn profile URL here)
+├── README.md # Project overview and instructions
+├── LICENSE # License information for the repository
+├── .gitignore # Files and directories to be ignored by Git
+└── requirements.txt # Dependencies and requirements for the project
 
 
+---
 
+## License
+This project is licensed under the MIT License. You are free to use, modify, and share this project with proper attribution.
 
+---
 
+## About
+Hello! I'm Wisdom Chinemere Mpamugo, also known as Wisdom Analytics.  
+As a Data Analyst, I help organizations make data-driven decisions by building scalable data solutions and translating data into actionable insights.
 
-
-
-
-
+Let's stay in touch! Feel free to connect with me on this platform:
+- LinkedIn: (add your public LinkedIn profile URL here)
 
