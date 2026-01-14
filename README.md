@@ -82,33 +82,28 @@ The data architecture for this project follows Medallion Architecture (*Bronze*,
 
 ## 📂 Repository Structure
 
-data-warehouse-project/
-│
-├── datasets/ # Raw datasets used for the project (ERP and CRM data)
-│
-├── docs/ # Project documentation and architecture details
-│ ├── etl.drawio # ETL techniques and workflows
-│ ├── data_architecture.drawio # Overall system architecture
-│ ├── data_catalog.md # Dataset catalog and metadata
-│ ├── data_flow.drawio # Data flow diagrams
-│ ├── data_models.drawio # Star schema data models
-│
-├── scripts/ # SQL scripts for ETL and transformations
-│ ├── bronze/ # Extracting and loading raw data
-│ ├── silver/ # Cleaning and transforming data
-│ ├── gold/ # Creating analytical models
-│
-├── analytics/ # Python-based advanced analytics
-│ ├── notebooks/ # Jupyter notebooks (RFM, CLV, churn analysis)
-│ ├── images/ # Generated visualizations
-│ └── README.md # Analytics documentation
-│
-├── tests/ # Test scripts and data quality checks
-│
-├── README.md # Project overview and instructions
-├── LICENSE # License information for the repository
-├── .gitignore # Files and directories to be ignored by Git
-└── requirements.txt # Dependencies and requirements for the project
+| Path | Description |
+|------|------------|
+| `datasets/` | Raw datasets used for the project (ERP and CRM data) |
+| `docs/` | Project documentation and architecture details |
+| `docs/etl.drawio` | ETL techniques and workflows |
+| `docs/data_architecture.drawio` | Overall system architecture |
+| `docs/data_catalog.md` | Dataset catalog and metadata |
+| `docs/data_flow.drawio` | Data flow diagrams |
+| `docs/data_models.drawio` | Star schema data models |
+| `scripts/` | SQL scripts for ETL and transformations |
+| `scripts/bronze/` | Extracting and loading raw data |
+| `scripts/silver/` | Cleaning and transforming data |
+| `scripts/gold/` | Creating analytical models |
+| `analytics/` | Python-based advanced analytics |
+| `analytics/notebooks/` | Jupyter notebooks (RFM, CLV, churn analysis) |
+| `analytics/images/` | Generated visualizations |
+| `analytics/README.md` | Analytics documentation |
+| `tests/` | Test scripts and data quality checks |
+| `README.md` | Project overview and instructions |
+| `LICENSE` | License information for the repository |
+| `.gitignore` | Files and directories ignored by Git |
+| `requirements.txt` | Project dependencies |
 
 
 ---
