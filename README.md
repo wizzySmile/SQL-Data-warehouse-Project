@@ -123,6 +123,37 @@ The data architecture for this project follows Medallion Architecture (*Bronze*,
 
 
 ---
+## Key Insights
+
+- Customer engagement level is the strongest indicator of long-term customer value. Highly engaged customers (*Champions* and *Loyal Customers*) consistently generate higher lifetime value, regardless of whether they are New, Regular, or VIP customers.
+
+- A small group of highly engaged customers drives a disproportionate share of long-term revenue, while the majority of customers fall into lower engagement levels.
+
+- The most critical risk to future revenue comes from *At Risk (High Value)* customers — customers with strong historical value but declining engagement — rather than customers who have already churned.
+
+---
+
+## Recommendations
+
+- Prioritize retention strategies based on **engagement level**, not customer status alone, with a strong focus on *Champions* and *At Risk (High Value)* customers.
+
+- Implement targeted win-back campaigns for high-value customers showing declining engagement to prevent future revenue loss.
+
+- Use scalable and automated engagement strategies for customers in the *Needs Attention* group to improve retention efficiently.
+
+- Deprioritize retention spending on *Churn Risk* customers and reallocate resources toward higher-impact engagement segments.
+
+---
+
+## Limitations
+
+- Engagement level was used as a behavioral proxy for churn in the absence of an explicit churn label.
+
+- The analysis relies solely on transactional data and does not include marketing interactions, pricing changes, or customer support data that could provide deeper insights.
+
+- Customer Lifetime Value estimates were based on historical transactions and may not reflect future behavioral changes.
+
+---
 
 ## About
 Hello! I'm Wisdom Chinemere Mpamugo, also known as Wisdom Analytics.  
