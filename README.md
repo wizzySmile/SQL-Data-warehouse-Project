@@ -8,6 +8,7 @@ This portfolio project showcases a robust data warehousing and analytics solutio
 - [Project Overview](#project-overview)
 - [Tools Used](#tools-used)
 - [Project Requirements](#project-requirement)
+- [BI: Analytics & Reporting](https://public.tableau.com/app/profile/wisdom.mpamugo/viz/salesbaraaproject/customersummary)
 - [Data Architecture](#data-architecture)
 - [Repository Structure](#repository-structure)
 - [About](#about)
@@ -57,11 +58,12 @@ Develop SQL-based analytics and Tableau dashboards to deliver detailed insights 
 - *Product Performance*
 - *Sales Trends*
 
-   *SQL Query*
+🛢️ *SQL Query*
+
 SQL is used to generate clean, reliable analytical datasets from the data warehouse, while *Tableau* is used to build interactive dashboards and KPI reports that provide high-level business visibility.
 
 📊 *Tableau Dashboard*  
-- View the interactive Tableau dashboards here: [Tableau Dashboard Link](PASTE_YOUR_TABLEAU_LINK_HERE)
+- View the interactive Tableau dashboards here: [Tableau Dashboard Link](https://public.tableau.com/app/profile/wisdom.mpamugo/viz/salesbaraaproject/customersummary)
 
 These insights empower stakeholders with key business metrics, enabling *data-driven strategic decision-making*.
 
