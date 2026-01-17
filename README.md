@@ -5,15 +5,21 @@ This portfolio project showcases a robust data warehousing and analytics solutio
 
 ---
 ## Table of Contents
-- [Project Overview](#project-overview)
+- [Project Overview](#-project-overview)
 - [Tools Used](#tools-used)
-- [Project Requirements](#project-requirement)
-- [BI: Analytics & Reporting](https://public.tableau.com/app/profile/wisdom.mpamugo/viz/salesbaraaproject/customersummary)
+- [Project Requirements](#project-requirements)
+- [Project Goal](#project-goal)
+- [BI: Analytics & Reporting](#bi-analytics--reporting)
+- [Tableau Dashboard Overview](https://public.tableau.com/app/profile/wisdom.mpamugo/viz/salesbaraaproject/customersummary)
 - [Data Architecture](#data-architecture)
-- [Repository Structure](#repository-structure)
+- [Repository Structure](#-repository-structure)
+- [Key Insights](#key-insights)
+- [Recommendations](#recommendations)
+- [Limitations](#limitations)
 - [About](#about)
 - [Contact](#contact)
 ---
+
 ## 📖 Project Overview
 
 This project involves:
@@ -38,8 +44,8 @@ This project involves:
 
 ### Building the Data Warehouse (Data Engineering)
 
-#### Objective
-Develop a modern data warehouse using MySQL to consolidate sales data, enabling analytical reporting and informed decision making.
+#### Project Goal
+Build a SQL Server–based data warehouse to support analytical reporting. Leverage Tableau to provide high-level business overviews and KPI monitoring and apply Python-based advanced analytics to explore customer behaviour in depth, enabling data-driven insights, customer segmentation, and informed strategic decision-making.
 
 #### Specifications
 - *Data Sources*: Import data from two source systems (ERP and CRM) provided as CSV files.
@@ -50,7 +56,7 @@ Develop a modern data warehouse using MySQL to consolidate sales data, enabling 
 
 ---
 
-### BI: Analytics & Reporting (Data Analytics)
+### BI: Analytics & Reporting
 
 #### Objective
 Develop SQL-based analytics and Tableau dashboards to deliver detailed insights into:
@@ -84,7 +90,7 @@ Extend dashboard-level insights with advanced exploratory data analysis using Py
 
 ---
 
-## 🏗️ Data Architecture
+## Data Architecture
 
 The data architecture for this project follows Medallion Architecture (*Bronze*, *Silver*, and *Gold* layers):
 
