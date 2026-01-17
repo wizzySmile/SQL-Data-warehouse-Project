@@ -170,5 +170,6 @@ As a Data Analyst, I help organizations make data-driven decisions by building s
 ## Contact
 Let's stay in touch! Feel free to connect with me on this platform:
 - LinkedIn: [https://www.linkedin.com/in/wisdom-mpamugo-98b5151b2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app]
+  
 - Twitter: [https://x.com/WisdomAnalyst01]
 
