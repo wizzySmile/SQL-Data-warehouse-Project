@@ -4,7 +4,15 @@ Welcome to the Data Warehouse and Analytics Project repository!
 This portfolio project showcases a robust data warehousing and analytics solution, demonstrating industry best practices in data engineering and analytics. The project encompasses the entire data warehousing lifecycle, from designing and building a data warehouse to generating actionable business insights.
 
 ---
-
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Tools Used](#tools-used)
+- [Project Requirements](#project-requirement)
+- [Data Architecture](#data-architecture)
+- [Repository Structure](#repository-structure)
+- [About](#about)
+- [Contact](#contact)
+---
 ## 📖 Project Overview
 
 This project involves:
@@ -49,7 +57,11 @@ Develop SQL-based analytics and Tableau dashboards to deliver detailed insights 
 - *Product Performance*
 - *Sales Trends*
 
+   *SQL Query*
 SQL is used to generate clean, reliable analytical datasets from the data warehouse, while *Tableau* is used to build interactive dashboards and KPI reports that provide high-level business visibility.
+
+📊 *Tableau Dashboard*  
+- View the interactive Tableau dashboards here: [Tableau Dashboard Link](PASTE_YOUR_TABLEAU_LINK_HERE)
 
 These insights empower stakeholders with key business metrics, enabling *data-driven strategic decision-making*.
 
@@ -110,15 +122,13 @@ The data architecture for this project follows Medallion Architecture (*Bronze*,
 
 ---
 
-## License
-This project is licensed under the MIT License. You are free to use, modify, and share this project with proper attribution.
-
----
-
 ## About
 Hello! I'm Wisdom Chinemere Mpamugo, also known as Wisdom Analytics.  
 As a Data Analyst, I help organizations make data-driven decisions by building scalable data solutions and translating data into actionable insights.
 
+--
+
+## Contact
 Let's stay in touch! Feel free to connect with me on this platform:
 - LinkedIn: [https://www.linkedin.com/in/wisdom-mpamugo-98b5151b2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app]
 - Twitter: [https://x.com/WisdomAnalyst01]
